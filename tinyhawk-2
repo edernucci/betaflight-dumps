@@ -254,7 +254,9 @@ feature -SOFTSPI
 feature -ESC_SENSOR
 feature -ANTI_GRAVITY
 feature -DYNAMIC_FILTER
+feature TELEMETRY
 feature OSD
+feature AIRMODE
 feature RX_SPI
 feature ANTI_GRAVITY
 feature DYNAMIC_FILTER
@@ -593,7 +595,7 @@ set adc_tempsensor_calibration30 = 0
 set adc_tempsensor_calibration110 = 0
 set input_filtering_mode = OFF
 set blackbox_p_ratio = 32
-set blackbox_device = SERIAL
+set blackbox_device = NONE
 set blackbox_record_acc = ON
 set blackbox_mode = NORMAL
 set min_throttle = 1070
@@ -788,25 +790,25 @@ set osd_ah_max_rol = 40
 set osd_ah_invert = OFF
 set osd_tim1 = 2560
 set osd_tim2 = 2561
-set osd_vbat_pos = 2412
-set osd_rssi_pos = 2138
+set osd_vbat_pos = 353
+set osd_rssi_pos = 2458
 set osd_link_quality_pos = 234
 set osd_rssi_dbm_pos = 234
 set osd_tim_1_pos = 234
 set osd_tim_2_pos = 2423
 set osd_remaining_time_estimate_pos = 234
-set osd_flymode_pos = 2113
+set osd_flymode_pos = 2413
 set osd_anti_gravity_pos = 234
 set osd_g_force_pos = 234
 set osd_throttle_pos = 234
-set osd_vtx_channel_pos = 2401
+set osd_vtx_channel_pos = 353
 set osd_crosshairs_pos = 205
 set osd_ah_sbar_pos = 206
 set osd_ah_pos = 78
 set osd_current_pos = 234
 set osd_mah_drawn_pos = 234
 set osd_motor_diag_pos = 234
-set osd_craft_name_pos = 2121
+set osd_craft_name_pos = 73
 set osd_display_name_pos = 394
 set osd_gps_speed_pos = 234
 set osd_gps_lon_pos = 234
@@ -823,8 +825,8 @@ set osd_pid_yaw_pos = 234
 set osd_debug_pos = 234
 set osd_power_pos = 234
 set osd_pidrate_profile_pos = 186
-set osd_warnings_pos = 2345
-set osd_avg_cell_voltage_pos = 374
+set osd_warnings_pos = 2441
+set osd_avg_cell_voltage_pos = 2401
 set osd_pit_ang_pos = 234
 set osd_rol_ang_pos = 234
 set osd_battery_usage_pos = 234
@@ -881,11 +883,11 @@ set rate_6pos_switch = OFF
 set cpu_overclock = OFF
 set pwr_on_arm_grace = 5
 set scheduler_optimize_rate = AUTO
-set vtx_band = 5
-set vtx_channel = 4
-set vtx_power = 1
+set vtx_band = 1
+set vtx_channel = 1
+set vtx_power = 3
 set vtx_low_power_disarm = UNTIL_FIRST_ARM
-set vtx_freq = 5769
+set vtx_freq = 5865
 set vtx_pit_mode_freq = 0
 set vtx_halfduplex = ON
 set vtx_spi_bus = 0
