@@ -1,9 +1,8 @@
 dump
-###WARNING: NO CUSTOM DEFAULTS FOUND###
 
 # version
-# Betaflight / STM32F411 (S411) 4.1.0 Oct 16 2019 / 11:57:34 (c37a7c91a) MSP API: 1.42
-# manufacturer_id: MTKS   board_name: MATEKF411RX   custom defaults: NO
+# Betaflight / STM32F411 (S411) 4.2.9 Apr 27 2021 / 19:33:23 (e097f4ab7) MSP API: 1.43
+# config: manufacturer_id: MTKS, board_name: MATEKF411RX, version: ee671311, date: 2019-10-16T11:49:37Z
 
 # start the command batch
 batch start
@@ -250,7 +249,6 @@ feature -CHANNEL_FORWARDING
 feature -TRANSPONDER
 feature -AIRMODE
 feature -RX_SPI
-feature -SOFTSPI
 feature -ESC_SENSOR
 feature -ANTI_GRAVITY
 feature -DYNAMIC_FILTER
@@ -461,18 +459,6 @@ rxrange 1 1000 2000
 rxrange 2 1000 2000
 rxrange 3 1000 2000
 
-# vtx
-vtx 0 0 0 0 0 900 900
-vtx 1 0 0 0 0 900 900
-vtx 2 0 0 0 0 900 900
-vtx 3 0 0 0 0 900 900
-vtx 4 0 0 0 0 900 900
-vtx 5 0 0 0 0 900 900
-vtx 6 0 0 0 0 900 900
-vtx 7 0 0 0 0 900 900
-vtx 8 0 0 0 0 900 900
-vtx 9 0 0 0 0 900 900
-
 # vtxtable
 vtxtable bands 5
 vtxtable channels 8
@@ -484,6 +470,18 @@ vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
 vtxtable powerlevels 3
 vtxtable powervalues 0 1 2
 vtxtable powerlabels 25 100 200
+
+# vtx
+vtx 0 0 0 0 0 900 900
+vtx 1 0 0 0 0 900 900
+vtx 2 0 0 0 0 900 900
+vtx 3 0 0 0 0 900 900
+vtx 4 0 0 0 0 900 900
+vtx 5 0 0 0 0 900 900
+vtx 6 0 0 0 0 900 900
+vtx 7 0 0 0 0 900 900
+vtx 8 0 0 0 0 900 900
+vtx 9 0 0 0 0 900 900
 
 # rxfail
 rxfail 0 a
@@ -507,7 +505,6 @@ rxfail 17 h
 
 # master
 set gyro_hardware_lpf = NORMAL
-set gyro_sync_denom = 1
 set gyro_lowpass_type = PT1
 set gyro_lowpass_hz = 200
 set gyro_lowpass2_type = PT1
@@ -523,10 +520,10 @@ set gyro_overflow_detect = ALL
 set yaw_spin_recovery = ON
 set yaw_spin_threshold = 1950
 set gyro_to_use = FIRST
-set dyn_notch_range = MEDIUM
-set dyn_notch_width_percent = 8
-set dyn_notch_q = 120
-set dyn_notch_min_hz = 150
+set dyn_notch_width_percent = 0
+set dyn_notch_q = 250
+set dyn_notch_min_hz = 125
+set dyn_notch_max_hz = 350
 set dyn_lpf_gyro_min_hz = 200
 set dyn_lpf_gyro_max_hz = 500
 set gyro_filter_debug_axis = ROLL
@@ -534,7 +531,7 @@ set acc_hardware = AUTO
 set acc_lpf_hz = 10
 set acc_trim_pitch = 0
 set acc_trim_roll = 2
-set acc_calibration = 0,-22,140
+set acc_calibration = 0,-22,140,1
 set align_mag = DEFAULT
 set mag_align_roll = 0
 set mag_align_pitch = 0
@@ -582,6 +579,7 @@ set spektrum_sat_bind_autoreset = ON
 set srxl2_unit_id = 1
 set srxl2_baud_fast = ON
 set sbus_baud_fast = OFF
+set crsf_use_rx_snr = OFF
 set airmode_start_throttle_percent = 25
 set rx_min_usec = 885
 set rx_max_usec = 2115
@@ -603,11 +601,11 @@ set max_throttle = 2000
 set min_command = 1000
 set dshot_idle_value = 550
 set dshot_burst = AUTO
-set dshot_bidir = OFF
+set dshot_bidir = ON
 set dshot_bitbang = AUTO
 set dshot_bitbang_timer = AUTO
 set use_unsynced_pwm = OFF
-set motor_pwm_protocol = DSHOT600
+set motor_pwm_protocol = DSHOT300
 set motor_pwm_rate = 480
 set motor_pwm_inversion = OFF
 set motor_poles = 12
@@ -639,7 +637,8 @@ set use_cbat_alerts = OFF
 set cbat_alert_percent = 10
 set vbat_cutoff_percent = 100
 set force_battery_cell_count = 0
-set vbat_lpf_period = 30
+set vbat_display_lpf_period = 30
+set vbat_sag_lpf_period = 2
 set ibat_lpf_period = 10
 set vbat_duration_for_warning = 0
 set vbat_duration_for_critical = 0
@@ -656,6 +655,7 @@ set beeper_frequency = 0
 set beeper_dshot_beacon_tone = 1
 set yaw_motors_reversed = OFF
 set crashflip_motor_percent = 0
+set crashflip_expo = 35
 set 3d_deadband_low = 1406
 set 3d_deadband_high = 1514
 set 3d_neutral = 1460
@@ -677,9 +677,11 @@ set auto_disarm_delay = 5
 set gyro_cal_on_first_arm = OFF
 set gps_provider = NMEA
 set gps_sbas_mode = AUTO
+set gps_sbas_integrity = OFF
 set gps_auto_config = ON
 set gps_auto_baud = OFF
 set gps_ublox_use_galileo = OFF
+set gps_ublox_mode = AIRBORNE
 set gps_set_home_point_once = OFF
 set gps_use_3d_speed = OFF
 set gps_rescue_angle = 32
@@ -713,7 +715,7 @@ set pid_process_denom = 4
 set runaway_takeoff_prevention = ON
 set runaway_takeoff_deactivate_delay = 500
 set runaway_takeoff_deactivate_throttle_percent = 20
-set thrust_linear = 0
+set thrust_linear = 25
 set transient_throttle_limit = 0
 set tlm_inverted = OFF
 set tlm_halfduplex = ON
@@ -760,6 +762,9 @@ set sdcard_detect_inverted = OFF
 set sdcard_mode = OFF
 set sdcard_dma = OFF
 set sdcard_spi_bus = 0
+set sdio_clk_bypass = OFF
+set sdio_use_cache = OFF
+set sdio_use_4bit_width = OFF
 set osd_units = METRIC
 set osd_warn_arming_disable = ON
 set osd_warn_batt_not_full = OFF
@@ -776,11 +781,14 @@ set osd_warn_no_gps_rescue = OFF
 set osd_warn_gps_rescue_disabled = OFF
 set osd_warn_rssi = ON
 set osd_warn_link_quality = OFF
+set osd_warn_rssi_dbm = OFF
+set osd_warn_over_cap = OFF
 set osd_rssi_alarm = 20
 set osd_link_quality_alarm = 80
-set osd_rssi_dbm_alarm = 60
+set osd_rssi_dbm_alarm = -60
 set osd_cap_alarm = 450
 set osd_alt_alarm = 100
+set osd_distance_alarm = 0
 set osd_esc_temp_alarm = -128
 set osd_esc_rpm_alarm = -1
 set osd_esc_current_alarm = -1
@@ -788,6 +796,8 @@ set osd_core_temp_alarm = 70
 set osd_ah_max_pit = 20
 set osd_ah_max_rol = 40
 set osd_ah_invert = OFF
+set osd_logo_on_arming = OFF
+set osd_logo_on_arming_duration = 5
 set osd_tim1 = 2560
 set osd_tim2 = 2561
 set osd_vbat_pos = 353
@@ -847,6 +857,9 @@ set osd_stick_overlay_radio_mode = 2
 set osd_rate_profile_name_pos = 23
 set osd_pid_profile_name_pos = 2
 set osd_profile_name_pos = 234
+set osd_rcchannels_pos = 234
+set osd_camera_frame_pos = 35
+set osd_efficiency_pos = 234
 set osd_stat_rtc_date_time = OFF
 set osd_stat_tim_1 = OFF
 set osd_stat_tim_2 = ON
@@ -876,6 +889,10 @@ set osd_profile_1_name = -
 set osd_profile_2_name = -
 set osd_profile_3_name = -
 set osd_gps_sats_show_hdop = OFF
+set osd_displayport_device = AUTO
+set osd_rcchannels = -1,-1,-1,-1
+set osd_camera_frame_width = 24
+set osd_camera_frame_height = 11
 set system_hse_mhz = 8
 set task_statistics = ON
 set debug_mode = NONE
@@ -883,6 +900,7 @@ set rate_6pos_switch = OFF
 set cpu_overclock = OFF
 set pwr_on_arm_grace = 5
 set scheduler_optimize_rate = AUTO
+set enable_stick_arming = OFF
 set vtx_band = 1
 set vtx_channel = 1
 set vtx_power = 3
@@ -899,6 +917,9 @@ set max7456_spi_bus = 2
 set max7456_preinit_opu = OFF
 set displayport_msp_col_adjust = 0
 set displayport_msp_row_adjust = 0
+set displayport_msp_serial = -1
+set displayport_msp_attrs = 0,0,0,0
+set displayport_msp_use_device_blink = OFF
 set displayport_max7456_col_adjust = 0
 set displayport_max7456_row_adjust = 0
 set displayport_max7456_inv = OFF
@@ -972,6 +993,10 @@ set stats_total_dist_m = 0
 set name = TinyHawk II
 set display_name = -
 set position_alt_source = DEFAULT
+set box_user_1_name = -
+set box_user_2_name = -
+set box_user_3_name = -
+set box_user_4_name = -
 
 profile 0
 
@@ -979,6 +1004,7 @@ profile 0
 set profile_name = -
 set dyn_lpf_dterm_min_hz = 0
 set dyn_lpf_dterm_max_hz = 250
+set dyn_lpf_dterm_curve_expo = 5
 set dterm_lowpass_type = PT1
 set dterm_lowpass_hz = 100
 set dterm_lowpass2_type = PT1
@@ -986,10 +1012,11 @@ set dterm_lowpass2_hz = 200
 set dterm_notch_hz = 0
 set dterm_notch_cutoff = 0
 set vbat_pid_gain = OFF
+set vbat_sag_compensation = 100
 set pid_at_min_throttle = ON
 set anti_gravity_mode = SMOOTH
 set anti_gravity_threshold = 250
-set anti_gravity_gain = 5000
+set anti_gravity_gain = 10000
 set feedforward_transition = 25
 set acc_limit_yaw = 100
 set acc_limit = 0
@@ -1003,9 +1030,9 @@ set crash_recovery_rate = 100
 set crash_limit_yaw = 200
 set crash_recovery = ON
 set iterm_rotation = OFF
-set iterm_relax = RPY
-set iterm_relax_type = GYRO
-set iterm_relax_cutoff = 11
+set iterm_relax = RP
+set iterm_relax_type = SETPOINT
+set iterm_relax_cutoff = 10
 set iterm_windup = 40
 set iterm_limit = 150
 set pidsum_limit = 500
@@ -1053,15 +1080,17 @@ set launch_trigger_allow_reset = ON
 set launch_trigger_throttle_percent = 20
 set launch_angle_limit = 0
 set launch_control_gain = 40
-set ff_interpolate_sp = AVERAGED
+set ff_interpolate_sp = AVERAGED_2
 set ff_spike_limit = 60
 set ff_max_rate_limit = 100
+set ff_smooth_factor = 37
 set ff_boost = 15
 set idle_min_rpm = 0
 set idle_adjustment_speed = 50
 set idle_p = 50
 set idle_pid_limit = 200
 set idle_max_increase = 150
+set level_race_mode = OFF
 
 rateprofile 0
 
