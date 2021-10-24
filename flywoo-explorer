@@ -262,9 +262,9 @@ feature -ESC_SENSOR
 feature -ANTI_GRAVITY
 feature -DYNAMIC_FILTER
 feature RX_SERIAL
-feature MOTOR_STOP
 feature SOFTSERIAL
 feature GPS
+feature TELEMETRY
 feature LED_STRIP
 feature OSD
 feature AIRMODE
@@ -272,30 +272,30 @@ feature ANTI_GRAVITY
 feature DYNAMIC_FILTER
 
 # beeper
-beeper GYRO_CALIBRATED
-beeper RX_LOST
-beeper RX_LOST_LANDING
-beeper DISARMING
-beeper ARMING
-beeper ARMING_GPS_FIX
+beeper -GYRO_CALIBRATED
+beeper -RX_LOST
+beeper -RX_LOST_LANDING
+beeper -DISARMING
+beeper -ARMING
+beeper -ARMING_GPS_FIX
 beeper ARMING_GPS_NO_FIX
-beeper BAT_CRIT_LOW
-beeper BAT_LOW
-beeper GPS_STATUS
-beeper RX_SET
-beeper ACC_CALIBRATION
-beeper ACC_CALIBRATION_FAIL
-beeper READY_BEEP
+beeper -BAT_CRIT_LOW
+beeper -BAT_LOW
+beeper -GPS_STATUS
+beeper -RX_SET
+beeper -ACC_CALIBRATION
+beeper -ACC_CALIBRATION_FAIL
+beeper -READY_BEEP
 beeper MULTI_BEEPS
-beeper DISARM_REPEAT
-beeper ARMED
-beeper SYSTEM_INIT
-beeper ON_USB
-beeper BLACKBOX_ERASE
-beeper CRASH_FLIP
-beeper CAM_CONNECTION_OPEN
-beeper CAM_CONNECTION_CLOSE
-beeper RC_SMOOTHING_INIT_FAIL
+beeper -DISARM_REPEAT
+beeper -ARMED
+beeper -SYSTEM_INIT
+beeper -ON_USB
+beeper -BLACKBOX_ERASE
+beeper -CRASH_FLIP
+beeper -CAM_CONNECTION_OPEN
+beeper -CAM_CONNECTION_CLOSE
+beeper -RC_SMOOTHING_INIT_FAIL
 
 # beacon
 beacon -RX_LOST
@@ -413,11 +413,11 @@ mode_color 6 10 0
 mode_color 7 0 3
 
 # aux
-aux 0 0 1 1375 2100 0 0
-aux 1 2 1 1600 2100 0 0
-aux 2 46 2 1700 2100 0 0
-aux 3 13 0 1700 2100 0 0
-aux 4 35 3 1700 2100 0 0
+aux 0 0 0 1600 2100 0 0
+aux 1 1 1 1400 2100 0 0
+aux 2 46 255 1800 2100 0 0
+aux 3 0 0 900 900 0 0
+aux 4 0 0 900 900 0 0
 aux 5 0 0 900 900 0 0
 aux 6 0 0 900 900 0 0
 aux 7 0 0 900 900 0 0
@@ -503,7 +503,7 @@ rxfail 2 a
 rxfail 3 a
 rxfail 4 h
 rxfail 5 h
-rxfail 6 s 2000
+rxfail 6 h
 rxfail 7 h
 rxfail 8 h
 rxfail 9 h
@@ -542,9 +542,9 @@ set dyn_lpf_gyro_max_hz = 650
 set gyro_filter_debug_axis = ROLL
 set acc_hardware = AUTO
 set acc_lpf_hz = 10
-set acc_trim_pitch = 0
+set acc_trim_pitch = -2
 set acc_trim_roll = 0
-set acc_calibration = 126,-17,81,1
+set acc_calibration = 167,-11,83,1
 set align_mag = DEFAULT
 set mag_align_roll = 0
 set mag_align_pitch = 0
@@ -567,7 +567,7 @@ set baro_cf_vel = 985
 set mid_rc = 1500
 set min_check = 1050
 set max_check = 1900
-set rssi_channel = 12
+set rssi_channel = 0
 set rssi_src_frame_errors = OFF
 set rssi_scale = 100
 set rssi_offset = 0
@@ -585,7 +585,7 @@ set rc_smoothing_derivative_type = AUTO
 set rc_smoothing_auto_smoothness = 10
 set fpv_mix_degrees = 0
 set max_aux_channels = 14
-set serialrx_provider = SBUS
+set serialrx_provider = CRSF
 set serialrx_inverted = OFF
 set spektrum_sat_bind = 0
 set spektrum_sat_bind_autoreset = ON
@@ -605,7 +605,7 @@ set adc_vrefint_calibration = 0
 set adc_tempsensor_calibration30 = 0
 set adc_tempsensor_calibration110 = 0
 set input_filtering_mode = OFF
-set blackbox_p_ratio = 32
+set blackbox_p_ratio = 64
 set blackbox_device = SPIFLASH
 set blackbox_record_acc = ON
 set blackbox_mode = NORMAL
@@ -614,7 +614,7 @@ set max_throttle = 2000
 set min_command = 1000
 set dshot_idle_value = 550
 set dshot_burst = ON
-set dshot_bidir = OFF
+set dshot_bidir = ON
 set dshot_bitbang = AUTO
 set dshot_bitbang_timer = AUTO
 set use_unsynced_pwm = OFF
@@ -698,7 +698,7 @@ set gps_ublox_mode = AIRBORNE
 set gps_set_home_point_once = OFF
 set gps_use_3d_speed = OFF
 set gps_rescue_angle = 25
-set gps_rescue_initial_alt = 50
+set gps_rescue_initial_alt = 30
 set gps_rescue_descent_dist = 200
 set gps_rescue_landing_alt = 5
 set gps_rescue_landing_dist = 10
@@ -715,10 +715,10 @@ set gps_rescue_throttle_max = 1600
 set gps_rescue_ascend_rate = 500
 set gps_rescue_descend_rate = 150
 set gps_rescue_throttle_hover = 1400
-set gps_rescue_sanity_checks = RESCUE_SANITY_ON
+set gps_rescue_sanity_checks = RESCUE_SANITY_FS_ONLY
 set gps_rescue_min_sats = 5
 set gps_rescue_min_dth = 100
-set gps_rescue_allow_arming_without_fix = ON
+set gps_rescue_allow_arming_without_fix = OFF
 set gps_rescue_alt_mode = MAX_ALT
 set gps_rescue_use_mag = ON
 set deadband = 0
@@ -812,25 +812,25 @@ set osd_logo_on_arming = OFF
 set osd_logo_on_arming_duration = 5
 set osd_tim1 = 2560
 set osd_tim2 = 2561
-set osd_vbat_pos = 2305
-set osd_rssi_pos = 2177
-set osd_link_quality_pos = 234
-set osd_rssi_dbm_pos = 161
+set osd_vbat_pos = 257
+set osd_rssi_pos = 129
+set osd_link_quality_pos = 2209
+set osd_rssi_dbm_pos = 2177
 set osd_tim_1_pos = 2401
 set osd_tim_2_pos = 2369
 set osd_remaining_time_estimate_pos = 234
 set osd_flymode_pos = 2241
 set osd_anti_gravity_pos = 234
 set osd_g_force_pos = 234
-set osd_throttle_pos = 2361
-set osd_vtx_channel_pos = 2209
+set osd_throttle_pos = 313
+set osd_vtx_channel_pos = 2273
 set osd_crosshairs_pos = 205
 set osd_ah_sbar_pos = 206
 set osd_ah_pos = 78
 set osd_current_pos = 234
 set osd_mah_drawn_pos = 234
 set osd_motor_diag_pos = 234
-set osd_craft_name_pos = 2081
+set osd_craft_name_pos = 33
 set osd_display_name_pos = 234
 set osd_gps_speed_pos = 2264
 set osd_gps_lon_pos = 2124
@@ -852,7 +852,7 @@ set osd_avg_cell_voltage_pos = 2337
 set osd_pit_ang_pos = 234
 set osd_rol_ang_pos = 234
 set osd_battery_usage_pos = 234
-set osd_disarmed_pos = 2411
+set osd_disarmed_pos = 363
 set osd_nheading_pos = 234
 set osd_nvario_pos = 234
 set osd_esc_tmp_pos = 234
@@ -860,9 +860,9 @@ set osd_esc_rpm_pos = 234
 set osd_esc_rpm_freq_pos = 234
 set osd_rtc_date_time_pos = 234
 set osd_adjustment_range_pos = 234
-set osd_flip_arrow_pos = 2113
+set osd_flip_arrow_pos = 65
 set osd_core_temp_pos = 2296
-set osd_log_status_pos = 2145
+set osd_log_status_pos = 97
 set osd_stick_overlay_left_pos = 234
 set osd_stick_overlay_right_pos = 234
 set osd_stick_overlay_radio_mode = 2
@@ -907,17 +907,17 @@ set osd_camera_frame_width = 24
 set osd_camera_frame_height = 11
 set system_hse_mhz = 8
 set task_statistics = ON
-set debug_mode = NONE
+set debug_mode = GYRO_SCALED
 set rate_6pos_switch = OFF
 set cpu_overclock = 108MHZ
 set pwr_on_arm_grace = 5
 set scheduler_optimize_rate = AUTO
 set enable_stick_arming = OFF
-set vtx_band = 3
-set vtx_channel = 4
-set vtx_power = 5
+set vtx_band = 2
+set vtx_channel = 1
+set vtx_power = 4
 set vtx_low_power_disarm = OFF
-set vtx_freq = 5645
+set vtx_freq = 5733
 set vtx_pit_mode_freq = 0
 set vtx_halfduplex = ON
 set vtx_spi_bus = 0
