@@ -1,0 +1,133 @@
+# 
+
+# diff all
+
+# version
+# Betaflight / STM32F7X2 (S7X2) 4.2.9 Apr 27 2021 / 19:34:29 (e097f4ab7) MSP API: 1.43
+# config: manufacturer_id: DIAT, board_name: MAMBAF722_I2C, version: edcd244b, date: 2022-06-29T02:24:46Z
+
+# start the command batch
+batch start
+
+# reset configuration to default settings
+defaults nosave
+
+board_name MAMBAF722_I2C
+manufacturer_id DIAT
+mcu_id 001400265632501320303236
+signature 
+
+# name: EDER
+
+# feature
+feature -RX_PARALLEL_PWM
+feature GPS
+
+# beeper
+beeper -GYRO_CALIBRATED
+beeper -RX_LOST_LANDING
+beeper -DISARMING
+beeper -ACC_CALIBRATION
+beeper -ACC_CALIBRATION_FAIL
+beeper -DISARM_REPEAT
+beeper -ARMED
+beeper -ON_USB
+beeper -BLACKBOX_ERASE
+beeper -CAM_CONNECTION_OPEN
+beeper -CAM_CONNECTION_CLOSE
+beeper -RC_SMOOTHING_INIT_FAIL
+
+# beacon
+beacon RX_LOST
+beacon RX_SET
+
+# serial
+serial 4 2 115200 9600 0 115200
+
+# aux
+aux 0 0 0 1900 2100 0 0
+aux 1 1 1 1400 1600 0 0
+aux 2 46 1 1800 2100 0 0
+
+# rxfail
+rxfail 14 s 1000
+
+# master
+set acc_calibration = 0,-20,456,1
+set rssi_channel = 15
+set serialrx_provider = CRSF
+set blackbox_p_ratio = 16
+set bat_capacity = 1300
+set yaw_motors_reversed = ON
+set small_angle = 180
+set gps_auto_baud = ON
+set pid_process_denom = 2
+set osd_rssi_pos = 2337
+set osd_current_pos = 2241
+set osd_mah_drawn_pos = 2273
+set osd_craft_name_pos = 2113
+set osd_gps_speed_pos = 2401
+set osd_gps_lon_pos = 257
+set osd_gps_lat_pos = 225
+set osd_gps_sats_pos = 2465
+set osd_home_dir_pos = 2415
+set osd_home_dist_pos = 2369
+set osd_avg_cell_voltage_pos = 2305
+set gyro_1_align_yaw = 1800
+set name = EDER
+
+profile 0
+
+# profile 0
+set dyn_lpf_dterm_min_hz = 84
+set dyn_lpf_dterm_max_hz = 204
+set dyn_lpf_dterm_curve_expo = 6
+set dterm_lowpass2_hz = 180
+set vbat_sag_compensation = 100
+set anti_gravity_gain = 6000
+set feedforward_transition = 40
+set iterm_relax_cutoff = 10
+set yaw_lowpass_hz = 70
+set throttle_boost_cutoff = 10
+set p_pitch = 66
+set i_pitch = 99
+set d_pitch = 59
+set f_pitch = 125
+set p_roll = 61
+set i_roll = 94
+set d_roll = 55
+set f_roll = 119
+set p_yaw = 65
+set i_yaw = 99
+set f_yaw = 119
+set d_min_roll = 36
+set d_min_pitch = 40
+set ff_interpolate_sp = AVERAGED_3
+set ff_spike_limit = 55
+set ff_smooth_factor = 40
+
+profile 1
+
+profile 2
+
+# restore original profile selection
+profile 0
+
+rateprofile 0
+
+rateprofile 1
+
+rateprofile 2
+
+rateprofile 3
+
+rateprofile 4
+
+rateprofile 5
+
+# restore original rateprofile selection
+rateprofile 0
+
+# save configuration
+save
+# 
