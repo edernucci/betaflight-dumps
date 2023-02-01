@@ -1,6 +1,7 @@
 # version
-# Betaflight / STM32F405 (S405) 4.3.0 Apr 25 2022 / 01:02:32 (9d71184) MSP API: 1.44
-# config: manufacturer_id: DIAT, board_name: MAMBAF405US, version: ec268d11, date: 2021-07-26T13:10:45Z
+# Betaflight / STM32F405 (S405) 4.4.0 Jan 29 2023 / 06:27:57 (4605309d8) MSP API: 1.45
+
+# config: YES
 
 # start the command batch
 batch start
@@ -13,112 +14,78 @@ manufacturer_id DIAT
 mcu_id 004d00285453501820343947
 signature 
 
-# feature
-feature TELEMETRY
-
 # serial
-serial 1 1 115200 57600 0 115200
+serial 1 131073 115200 57600 0 115200
 serial 3 0 19200 57600 0 115200
 
 # aux
-aux 0 0 0 1600 2100 0 0
+aux 0 0 0 1800 2100 0 0
 aux 1 2 1 1300 1700 0 0
 
-# rxfail
-rxfail 14 s 1000
-
 # master
-set gyro_lpf1_static_hz = 375
-set gyro_lpf2_static_hz = 750
-set dyn_notch_count = 2
-set dyn_notch_min_hz = 100
-set dyn_notch_max_hz = 1000
-set gyro_lpf1_dyn_min_hz = 375
-set gyro_lpf1_dyn_max_hz = 750
-set acc_calibration = -57,20,221,1
-set rssi_channel = 15
-set rc_smoothing_auto_factor = 140
-set rc_smoothing_setpoint_cutoff = 25
-set rc_smoothing_feedforward_cutoff = 25
-set serialrx_provider = CRSF
-set blackbox_sample_rate = 1/16
+set dyn_notch_count = 1
+set dyn_notch_q = 500
+set acc_calibration = -58,8,256,1
+set rc_smoothing_auto_factor = 35
+set rc_smoothing_auto_factor_throttle = 28
+set rc_smoothing_setpoint_cutoff = 12
+set rc_smoothing_feedforward_cutoff = 12
+set rc_smoothing_throttle_cutoff = 20
 set blackbox_device = NONE
 set dshot_bidir = ON
 set motor_pwm_protocol = DSHOT300
 set motor_poles = 12
-set bat_capacity = 1300
-set vbat_max_cell_voltage = 420
 set pid_process_denom = 2
-set simplified_gyro_filter_multiplier = 150
-set osd_cap_alarm = 1000
-set osd_alt_alarm = 400
-set osd_rssi_pos = 6610
-set osd_tim_2_pos = 266
-set osd_remaining_time_estimate_pos = 299
-set osd_current_pos = 6635
-set osd_mah_drawn_pos = 6604
-set osd_gps_speed_pos = 100
-set osd_gps_lon_pos = 67
-set osd_gps_lat_pos = 35
-set osd_gps_sats_pos = 4
-set osd_home_dir_pos = 9
-set osd_home_dist_pos = 12
-set osd_flight_dist_pos = 79
-set osd_compass_bar_pos = 41
-set osd_altitude_pos = 131
-set osd_warnings_pos = 6474
-set osd_avg_cell_voltage_pos = 6641
-set osd_battery_usage_pos = 40
-set osd_disarmed_pos = 6252
-set osd_nvario_pos = 164
-set osd_rtc_date_time_pos = 8
-set osd_displayport_device = AUTO
-set rpm_filter_harmonics = 2
+set report_cell_voltage = ON
+set osd_link_quality_pos = 3368
+set osd_rssi_dbm_pos = 3400
+set osd_rsnr_pos = 3432
+set osd_crosshairs_pos = 2397
+set osd_ah_sbar_pos = 2398
+set osd_ah_pos = 2270
+set osd_current_pos = 2383
+set osd_wh_drawn_pos = 2415
+set osd_compass_bar_pos = 470
+set osd_altitude_pos = 1347
+set osd_warnings_pos = 14841
+set osd_avg_cell_voltage_pos = 2352
+set osd_sys_lq_pos = 3464
+set osd_displayport_device = MSP
+set osd_canvas_width = 60
+set osd_canvas_height = 22
+set vcd_video_system = HD
 
 profile 0
 
 # profile 0
-set vbat_sag_compensation = 100
-set anti_gravity_gain = 10000
-set iterm_relax_cutoff = 10
-set p_pitch = 75
-set i_pitch = 134
-set d_pitch = 76
-set f_pitch = 199
-set p_roll = 71
-set i_roll = 127
-set d_roll = 67
-set f_roll = 191
-set p_yaw = 71
-set i_yaw = 127
-set f_yaw = 191
-set d_min_roll = 67
-set d_min_pitch = 76
-set thrust_linear = 20
-set feedforward_averaging = 2_POINT
-set feedforward_smooth_factor = 45
-set simplified_master_multiplier = 160
-set simplified_d_gain = 140
-set simplified_dmax_gain = 0
+set feedforward_smooth_factor = 20
+set feedforward_jitter_factor = 15
+set feedforward_boost = 5
 
 profile 1
 
 profile 2
+
+profile 3
 
 # restore original profile selection
 profile 0
 
 rateprofile 0
 
+# rateprofile 0
+set roll_rc_rate = 2
+set pitch_rc_rate = 2
+set yaw_rc_rate = 2
+set roll_srate = 50
+set pitch_srate = 50
+set yaw_srate = 50
+
 rateprofile 1
 
 rateprofile 2
 
 rateprofile 3
-
-rateprofile 4
-
-rateprofile 5
 
 # restore original rateprofile selection
 rateprofile 0
