@@ -1,6 +1,7 @@
 # version
-# Betaflight / STM32F7X2 (S7X2) 4.2.9 Apr 27 2021 / 19:34:29 (e097f4ab7) MSP API: 1.43
-# config: manufacturer_id: DIAT, board_name: MAMBAF722_I2C, version: edcd244b, date: 2022-06-29T02:24:46Z
+# Betaflight / STM32F7X2 (S7X2) 4.4.0 Feb  1 2023 / 23:23:13 (4605309d8) MSP API: 1.45
+
+# config: YES
 
 # start the command batch
 batch start
@@ -13,141 +14,122 @@ manufacturer_id DIAT
 mcu_id 001400265632501320303236
 signature 
 
-# name: EDER
+# name: Chimera
 
 # feature
-feature -RX_PARALLEL_PWM
 feature GPS
 
-# beeper
-beeper -GYRO_CALIBRATED
-beeper -RX_LOST_LANDING
-beeper -DISARMING
-beeper -ACC_CALIBRATION
-beeper -ACC_CALIBRATION_FAIL
-beeper -DISARM_REPEAT
-beeper -ARMED
-beeper -ON_USB
-beeper -BLACKBOX_ERASE
-beeper -CAM_CONNECTION_OPEN
-beeper -CAM_CONNECTION_CLOSE
-beeper -RC_SMOOTHING_INIT_FAIL
-
-# beacon
-beacon RX_LOST
-beacon RX_SET
-
 # serial
-serial 4 2 115200 9600 0 115200
+serial 3 131073 115200 57600 0 115200
+serial 4 2 115200 57600 0 115200
 
 # aux
 aux 0 0 0 1900 2100 0 0
 aux 1 1 1 1400 1600 0 0
-aux 2 13 1 1800 2075 0 0
-aux 3 46 1 1800 2100 0 0
-aux 4 0 255 900 900 0 0
-aux 5 0 255 900 900 0 0
-aux 6 0 255 900 900 0 0
-aux 7 0 255 900 900 0 0
-aux 8 0 255 900 900 0 0
-aux 9 0 255 900 900 0 0
-aux 10 0 255 900 900 0 0
-aux 11 0 255 900 900 0 0
-aux 12 0 255 900 900 0 0
-aux 13 0 255 900 900 0 0
-aux 14 0 255 900 900 0 0
-aux 15 0 255 900 900 0 0
-aux 16 0 255 900 900 0 0
-aux 17 0 255 900 900 0 0
-aux 18 0 255 900 900 0 0
-aux 19 0 255 900 900 0 0
-
-# rxfail
-rxfail 14 s 1000
+aux 2 46 1 1900 2100 0 0
+aux 3 13 1 1900 2100 0 0
 
 # master
-set acc_trim_pitch = 2
-set acc_calibration = 0,-20,456,1
-set rssi_channel = 15
-set serialrx_provider = CRSF
-set blackbox_p_ratio = 64
+set dyn_notch_count = 1
+set dyn_notch_q = 500
+set acc_calibration = 29,29,445,1
+set rc_smoothing_auto_factor = 35
+set rc_smoothing_auto_factor_throttle = 28
+set rc_smoothing_setpoint_cutoff = 12
+set rc_smoothing_feedforward_cutoff = 12
+set rc_smoothing_throttle_cutoff = 20
+set fpv_mix_degrees = 25
+set dshot_bidir = ON
 set bat_capacity = 5760
-set vbat_max_cell_voltage = 420
 set vbat_min_cell_voltage = 250
-set vbat_warning_cell_voltage = 310
+set vbat_warning_cell_voltage = 330
 set ibata_scale = 79
 set yaw_motors_reversed = ON
-set small_angle = 180
 set gps_auto_baud = ON
+set gps_ublox_use_galileo = ON
 set gps_set_home_point_once = ON
-set gps_rescue_sanity_checks = RESCUE_SANITY_FS_ONLY
-set gps_rescue_min_sats = 5
-set gps_rescue_allow_arming_without_fix = ON
 set gps_rescue_alt_mode = FIXED_ALT
-set pid_process_denom = 2
-set osd_rssi_pos = 2337
-set osd_current_pos = 2241
-set osd_mah_drawn_pos = 2273
-set osd_craft_name_pos = 2113
-set osd_gps_speed_pos = 2401
-set osd_gps_lon_pos = 257
-set osd_gps_lat_pos = 225
-set osd_gps_sats_pos = 2465
-set osd_home_dir_pos = 2415
-set osd_home_dist_pos = 2369
-set osd_avg_cell_voltage_pos = 2305
-set debug_mode = GYRO_SCALED
+set gps_rescue_return_alt = 50
+set gps_rescue_allow_arming_without_fix = ON
+set report_cell_voltage = ON
+set osd_link_quality_pos = 3271
+set osd_rssi_dbm_pos = 3303
+set osd_rsnr_pos = 3335
+set osd_crosshairs_pos = 2397
+set osd_ah_sbar_pos = 2398
+set osd_ah_pos = 2270
+set osd_current_pos = 3685
+set osd_mah_drawn_pos = 2707
+set osd_gps_speed_pos = 2386
+set osd_gps_lon_pos = 34904
+set osd_gps_lat_pos = 34872
+set osd_home_dir_pos = 2237
+set osd_home_dist_pos = 2239
+set osd_compass_bar_pos = 2522
+set osd_altitude_pos = 3399
+set osd_warnings_pos = 14841
+set osd_avg_cell_voltage_pos = 2675
+set osd_battery_usage_pos = 2680
+set osd_sys_lq_pos = 3367
+set osd_sys_warnings_pos = 2584
+set osd_displayport_device = MSP
+set osd_canvas_width = 60
+set osd_canvas_height = 22
+set vcd_video_system = HD
 set gyro_1_align_yaw = 1800
-set name = EDER
+set craft_name = Chimera
+set pilot_name = Barba
 
 profile 0
 
 # profile 0
-set dyn_lpf_dterm_min_hz = 84
-set dyn_lpf_dterm_max_hz = 204
-set dyn_lpf_dterm_curve_expo = 6
-set dterm_lowpass2_hz = 180
-set vbat_sag_compensation = 100
-set anti_gravity_gain = 6000
-set feedforward_transition = 40
-set iterm_relax_cutoff = 10
-set yaw_lowpass_hz = 70
-set throttle_boost_cutoff = 10
-set p_pitch = 66
-set i_pitch = 99
-set d_pitch = 59
-set f_pitch = 125
+set p_pitch = 64
+set i_pitch = 98
+set d_pitch = 63
+set f_pitch = 123
 set p_roll = 61
-set i_roll = 94
+set i_roll = 93
 set d_roll = 55
-set f_roll = 119
-set p_yaw = 65
-set i_yaw = 99
-set f_yaw = 119
+set f_roll = 118
+set p_yaw = 61
+set i_yaw = 93
+set f_yaw = 118
 set d_min_roll = 36
-set d_min_pitch = 40
-set ff_interpolate_sp = AVERAGED_3
-set ff_spike_limit = 55
-set ff_smooth_factor = 40
+set d_min_pitch = 41
+set feedforward_smooth_factor = 20
+set feedforward_jitter_factor = 15
+set feedforward_boost = 5
+set simplified_master_multiplier = 110
+set simplified_i_gain = 85
+set simplified_d_gain = 110
+set simplified_pi_gain = 125
+set simplified_dmax_gain = 155
+set simplified_feedforward_gain = 90
 
 profile 1
 
 profile 2
+
+profile 3
 
 # restore original profile selection
 profile 0
 
 rateprofile 0
 
+# rateprofile 0
+set roll_rc_rate = 2
+set pitch_rc_rate = 2
+set yaw_rc_rate = 2
+set roll_srate = 50
+set pitch_srate = 50
+set yaw_srate = 50
+
 rateprofile 1
 
 rateprofile 2
 
 rateprofile 3
-
-rateprofile 4
-
-rateprofile 5
 
 # restore original rateprofile selection
 rateprofile 0
