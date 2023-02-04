@@ -1,7 +1,3 @@
-# 
-
-# diff all
-
 # version
 # Betaflight / STM32F7X2 (S7X2) 4.2.9 Apr 27 2021 / 19:34:29 (e097f4ab7) MSP API: 1.43
 # config: manufacturer_id: DIAT, board_name: MAMBAF722_I2C, version: edcd244b, date: 2022-06-29T02:24:46Z
@@ -47,20 +43,47 @@ serial 4 2 115200 9600 0 115200
 # aux
 aux 0 0 0 1900 2100 0 0
 aux 1 1 1 1400 1600 0 0
-aux 2 46 1 1800 2100 0 0
+aux 2 13 1 1800 2075 0 0
+aux 3 46 1 1800 2100 0 0
+aux 4 0 255 900 900 0 0
+aux 5 0 255 900 900 0 0
+aux 6 0 255 900 900 0 0
+aux 7 0 255 900 900 0 0
+aux 8 0 255 900 900 0 0
+aux 9 0 255 900 900 0 0
+aux 10 0 255 900 900 0 0
+aux 11 0 255 900 900 0 0
+aux 12 0 255 900 900 0 0
+aux 13 0 255 900 900 0 0
+aux 14 0 255 900 900 0 0
+aux 15 0 255 900 900 0 0
+aux 16 0 255 900 900 0 0
+aux 17 0 255 900 900 0 0
+aux 18 0 255 900 900 0 0
+aux 19 0 255 900 900 0 0
 
 # rxfail
 rxfail 14 s 1000
 
 # master
+set acc_trim_pitch = 2
 set acc_calibration = 0,-20,456,1
 set rssi_channel = 15
 set serialrx_provider = CRSF
-set blackbox_p_ratio = 16
-set bat_capacity = 1300
+set blackbox_p_ratio = 64
+set bat_capacity = 5760
+set vbat_max_cell_voltage = 420
+set vbat_min_cell_voltage = 250
+set vbat_warning_cell_voltage = 310
+set ibata_scale = 79
 set yaw_motors_reversed = ON
 set small_angle = 180
 set gps_auto_baud = ON
+set gps_set_home_point_once = ON
+set gps_rescue_sanity_checks = RESCUE_SANITY_FS_ONLY
+set gps_rescue_min_sats = 5
+set gps_rescue_allow_arming_without_fix = ON
+set gps_rescue_alt_mode = FIXED_ALT
 set pid_process_denom = 2
 set osd_rssi_pos = 2337
 set osd_current_pos = 2241
@@ -73,6 +96,7 @@ set osd_gps_sats_pos = 2465
 set osd_home_dir_pos = 2415
 set osd_home_dist_pos = 2369
 set osd_avg_cell_voltage_pos = 2305
+set debug_mode = GYRO_SCALED
 set gyro_1_align_yaw = 1800
 set name = EDER
 
