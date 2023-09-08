@@ -101,7 +101,24 @@ led 3 9,6::CO:8
 # aux
 aux 0 0 0 1600 2100 0 0
 aux 1 1 1 1300 1700 0 0
-aux 2 46 1 1750 2100 0 0
+aux 2 13 1 1775 2075 0 0
+aux 3 46 1 1775 2075 0 0
+aux 4 0 255 900 900 0 0
+aux 5 0 255 900 900 0 0
+aux 6 0 255 900 900 0 0
+aux 7 0 255 900 900 0 0
+aux 8 0 255 900 900 0 0
+aux 9 0 255 900 900 0 0
+aux 10 0 255 900 900 0 0
+aux 11 0 255 900 900 0 0
+aux 12 0 255 900 900 0 0
+aux 13 0 255 900 900 0 0
+aux 14 0 255 900 900 0 0
+aux 15 0 255 900 900 0 0
+aux 16 0 255 900 900 0 0
+aux 17 0 255 900 900 0 0
+aux 18 0 255 900 900 0 0
+aux 19 0 255 900 900 0 0
 
 # vtxtable
 vtxtable bands 5
@@ -123,80 +140,113 @@ set acc_calibration = 178,19,-31,1
 set mag_hardware = NONE
 set baro_hardware = NONE
 set rssi_channel = 15
+set rc_smoothing_auto_factor = 35
+set rc_smoothing_auto_factor_throttle = 28
+set rc_smoothing_setpoint_cutoff = 12
+set rc_smoothing_feedforward_cutoff = 12
+set rc_smoothing_throttle_cutoff = 20
 set serialrx_provider = CRSF
 set blackbox_sample_rate = 1/2
 set dshot_bidir = ON
 set motor_pwm_protocol = DSHOT300
 set motor_poles = 12
+set failsafe_procedure = GPS-RESCUE
 set bat_capacity = 3000
 set vbat_min_cell_voltage = 290
 set vbat_warning_cell_voltage = 310
 set current_meter = NONE
 set vbat_scale = 111
+set 3d_deadband_throttle = 28160
+###ERROR IN diff: CORRUPTED CONFIG: 3d_deadband_throttle = 28160###
 set small_angle = 180
 set gps_auto_baud = ON
 set gps_rescue_angle = 30
-set gps_rescue_descent_dist = 50
+set gps_rescue_descent_dist = 70
 set gps_rescue_ground_speed = 1500
 set gps_rescue_throttle_min = 1150
 set gps_rescue_throttle_hover = 1320
 set gps_rescue_sanity_checks = RESCUE_SANITY_FS_ONLY
 set gps_rescue_allow_arming_without_fix = ON
 set gps_rescue_alt_mode = FIXED_ALT
+set deadband = 36
+###ERROR IN diff: CORRUPTED CONFIG: deadband = 36###
+set yaw_deadband = 77
+set report_cell_voltage = ON
 set osd_vbat_pos = 257
-set osd_rssi_pos = 2231
-set osd_link_quality_pos = 161
+set osd_rssi_pos = 183
+set osd_link_quality_pos = 2059
 set osd_rssi_dbm_pos = 129
 set osd_tim_1_pos = 353
 set osd_tim_2_pos = 321
-set osd_flymode_pos = 2412
+set osd_flymode_pos = 2073
 set osd_throttle_pos = 313
 set osd_vtx_channel_pos = 225
 set osd_craft_name_pos = 33
-set osd_gps_speed_pos = 2264
+set osd_gps_speed_pos = 2272
 set osd_gps_lon_pos = 76
 set osd_gps_lat_pos = 44
-set osd_gps_sats_pos = 2167
-set osd_home_dir_pos = 2190
-set osd_home_dist_pos = 2200
+set osd_gps_sats_pos = 119
+set osd_home_dir_pos = 2510
+set osd_home_dist_pos = 152
 set osd_flight_dist_pos = 184
-set osd_altitude_pos = 2327
-set osd_warnings_pos = 14729
-set osd_avg_cell_voltage_pos = 2476
+set osd_altitude_pos = 2295
+set osd_warnings_pos = 14569
+set osd_avg_cell_voltage_pos = 428
 set osd_disarmed_pos = 363
+set osd_nheading_pos = 2541
 set osd_flip_arrow_pos = 65
 set osd_core_temp_pos = 248
 set osd_log_status_pos = 97
+set osd_displayport_device = MSP
 set debug_mode = GYRO_SCALED
 set vtx_band = 5
 set vtx_channel = 1
 set vtx_power = 5
+set vcd_video_system = PAL
+set displayport_msp_serial = 30
 set gyro_1_align_yaw = 1800
 set name = FLYWOO
 
 profile 0
 
 # profile 0
-set p_pitch = 37
-set i_pitch = 20
-set d_pitch = 43
+set p_pitch = 56
+set i_pitch = 30
+set d_pitch = 81
 set f_pitch = 0
-set p_roll = 35
-set i_roll = 19
-set d_roll = 38
+set p_roll = 53
+set i_roll = 28
+set d_roll = 71
 set f_roll = 0
-set p_yaw = 35
-set i_yaw = 19
+set p_yaw = 53
+set i_yaw = 28
 set f_yaw = 0
-set d_min_roll = 38
-set d_min_pitch = 43
-set simplified_master_multiplier = 80
+set d_min_roll = 71
+set d_min_pitch = 81
+set simplified_master_multiplier = 120
 set simplified_i_gain = 30
-set simplified_d_gain = 160
+set simplified_d_gain = 200
 set simplified_dmax_gain = 0
 set simplified_feedforward_gain = 0
 
 profile 1
+
+# profile 1
+set p_pitch = 56
+set i_pitch = 63
+set d_pitch = 68
+set f_pitch = 75
+set p_roll = 50
+set i_roll = 59
+set d_roll = 60
+set f_roll = 75
+set p_yaw = 90
+set i_yaw = 70
+set f_yaw = 80
+set d_min_roll = 36
+set d_min_pitch = 40
+set dyn_idle_min_rpm = 30
+set simplified_pids_mode = OFF
 
 profile 2
 
@@ -206,15 +256,12 @@ profile 0
 rateprofile 0
 
 # rateprofile 0
-set roll_rc_rate = 19
-set pitch_rc_rate = 19
-set yaw_rc_rate = 19
-set roll_expo = 60
-set pitch_expo = 60
-set yaw_expo = 60
-set roll_srate = 90
-set pitch_srate = 90
-set yaw_srate = 90
+set roll_rc_rate = 2
+set pitch_rc_rate = 2
+set yaw_rc_rate = 2
+set roll_srate = 50
+set pitch_srate = 50
+set yaw_srate = 50
 
 rateprofile 1
 
